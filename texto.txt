@@ -1,0 +1,4 @@
+iniciar em home -> http://localhost:3000/home
+
+
+https://www.youtube.com/watch?v=esM9CRmTBP4&list=PLb-NlfexLTk_lsm7qMjMamK51bTAbQ3mH&index=34&ab_channel=SuperCoders
