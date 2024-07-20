@@ -1,0 +1,4 @@
+git status: Verifica o status dos arquivos.
+git add .: Adiciona todas as mudanças ao staging area.
+git commit -m "Mensagem": Faz o commit das mudanças.
+git push origin main: Envia as mudanças para o repositório remoto no GitHub.
