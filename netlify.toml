@@ -1,4 +1,4 @@
-[[redirects]]
-from = "/*"
-to = "/index.js"
-status = 200
+[build]
+  command = "npm run build"
+  publish = "build"
+  environment = { NODE_OPTIONS = "--openssl-legacy-provider" }
