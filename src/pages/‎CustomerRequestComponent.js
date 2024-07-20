@@ -9,14 +9,17 @@ class CustomerRequestComponent extends React.Component {
     this.completeCustomerRequestDetails = this.completeCustomerRequestDetails.bind(
       this
     );
+    this.hideCustomerRequest = this.hideCustomerRequest.bind(this);
     this.formRef = React.createRef();
   }
+
   state = {
     errorRes: false,
     errorMessage: "",
     btnMessage: 0,
     sendData: false,
     customerRequestDataList: [],
+    hiddenRequests: {},
     dataLoaded: false,
   };
 
@@ -40,7 +43,6 @@ class CustomerRequestComponent extends React.Component {
     this.formRef.current.reset();
   }
 
-  //This Method Work When Our Page is Ready
   componentDidMount() {
     this.fetchCustomerRequestData();
   }
@@ -71,22 +73,28 @@ class CustomerRequestComponent extends React.Component {
     this.fetchCustomerRequestData();
   }
 
+  hideCustomerRequest(id) {
+    this.setState((prevState) => ({
+      hiddenRequests: { ...prevState.hiddenRequests, [id]: true },
+    }));
+  }
+
   render() {
     return (
       <section className="content">
         <div className="container-fluid">
           <div className="block-header">
-            <h2>MANAGE CUSTOMER MEDICINE REQUEST</h2>
+            <h2>Gerenciar solicitações de medicamentos</h2>
           </div>
           <div className="row clearfix">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div className="card">
                 <div className="header">
-                  <h2>Add CUSTOMER REQUEST</h2>
+                  <h2>ADICIONAR PEDIDO DE CLIENTE</h2>
                 </div>
                 <div className="body">
                   <form onSubmit={this.formSubmit} ref={this.formRef}>
-                    <label htmlFor="email_address">Name</label>
+                    <label htmlFor="email_address">Nome</label>
                     <div className="form-group">
                       <div className="form-line">
                         <input
@@ -94,11 +102,11 @@ class CustomerRequestComponent extends React.Component {
                           id="name"
                           name="name"
                           className="form-control"
-                          placeholder="Enter Customer Name"
+                          placeholder="Digite o nome do cliente"
                         />
                       </div>
                     </div>
-                    <label htmlFor="email_address">Phone.</label>
+                    <label htmlFor="email_address">Contato</label>
                     <div className="form-group">
                       <div className="form-line">
                         <input
@@ -106,11 +114,11 @@ class CustomerRequestComponent extends React.Component {
                           id="phone"
                           name="phone"
                           className="form-control"
-                          placeholder="Enter Phone No."
+                          placeholder="Digite o contato do cliente"
                         />
                       </div>
                     </div>
-                    <label htmlFor="email_address">Medicine Details</label>
+                    <label htmlFor="email_address">Detalhes do Medicamento</label>
                     <div className="form-group">
                       <div className="form-line">
                         <input
@@ -118,11 +126,11 @@ class CustomerRequestComponent extends React.Component {
                           id="medicine_details"
                           name="medicine_details"
                           className="form-control"
-                          placeholder="Enter Medicine Details"
+                          placeholder="Digite aqui os detalhes importantes do medicamento do cliente"
                         />
                       </div>
                     </div>
-                    <label htmlFor="email_address">Prescription</label>
+                    <label htmlFor="email_address">Imagem do Medicamento</label>
                     <div className="form-group">
                       <div className="form-line">
                         <input
@@ -140,14 +148,14 @@ class CustomerRequestComponent extends React.Component {
                       disabled={this.state.btnMessage == 0 ? false : true}
                     >
                       {this.state.btnMessage == 0
-                        ? "Add Customer Request"
-                        : "Adding Customer Request Please Wait.."}
+                        ? "Adicionar solicitação do cliente"
+                        : "Adicionando.."}
                     </button>
                     <br />
                     {this.state.errorRes == false &&
                     this.state.sendData == true ? (
                       <div className="alert alert-success">
-                        <strong>Success!</strong> {this.state.errorMessage}.
+                        <strong>Sucesso!</strong> {this.state.errorMessage}.
                       </div>
                     ) : (
                       ""
@@ -155,7 +163,7 @@ class CustomerRequestComponent extends React.Component {
                     {this.state.errorRes == true &&
                     this.state.sendData == true ? (
                       <div className="alert alert-danger">
-                        <strong>Failed!</strong>
+                        <strong>Falha!</strong>
                         {this.state.errorMessage}.
                       </div>
                     ) : (
@@ -186,73 +194,100 @@ class CustomerRequestComponent extends React.Component {
                   ) : (
                     ""
                   )}
-                  <h2>All Customer Medicine Request</h2>
+                  <h2>Todas as solicitações de medicamentos do cliente</h2>
                 </div>
                 <div className="body table-responsive">
                   <table className="table table-hover">
                     <thead>
                       <tr>
-                        <th>#ID</th>
-                        <th>NAME</th>
-                        <th>Phone</th>
-                        <th>Medicine Details</th>
-                        <th>PRESCRIPTION</th>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Contato</th>
+                        <th>Detalhes do Medicamento</th>
+                        <th>Imagem do Medicamento</th>
                         <th>Status</th>
-                        <th>Added On</th>
-                        <th>Action</th>
+                        <th>Adicionado em:</th>
+                        <th>Ação</th>
                       </tr>
                     </thead>
                     <tbody>
                       {this.state.customerRequestDataList.map(
-                        (CustomerRequest) => (
-                          <tr key={CustomerRequest.id}>
-                            <td>{CustomerRequest.id}</td>
-                            <td>{CustomerRequest.customer_name}</td>
-                            <td>{CustomerRequest.phone}</td>
-                            <td>{CustomerRequest.medicine_details}</td>
-                            <td>
-                              {CustomerRequest.prescription == null ? (
-                                ""
-                              ) : (
-                                <img
-                                  src={CustomerRequest.prescription}
-                                  style={{ width: 100, height: 100 }}
-                                />
-                              )}
-                            </td>
-                            <td>
-                              {CustomerRequest.status == 0
-                                ? "Pending"
-                                : "Completed"}
-                            </td>
-                            <td>
-                              {new Date(
-                                CustomerRequest.added_on
-                              ).toLocaleString()}
-                            </td>
-                            <td>
-                              {CustomerRequest.status == 0 ? (
-                                <button
-                                  className="btn btn-block btn-warning"
-                                  onClick={() =>
-                                    this.completeCustomerRequestDetails(
-                                      CustomerRequest.id,
-                                      CustomerRequest.customer_name,
-                                      CustomerRequest.phone,
-                                      CustomerRequest.medicine_details
-                                    )
-                                  }
-                                >
-                                  COMPLETE?
-                                </button>
-                              ) : (
-                                <button className="btn btn-block btn-success">
-                                  COMPLETED
-                                </button>
-                              )}
-                            </td>
-                          </tr>
-                        )
+                        (CustomerRequest) =>
+                          !this.state.hiddenRequests[CustomerRequest.id] && (
+                            <tr key={CustomerRequest.id}>
+                              <td>{CustomerRequest.id}</td>
+                              <td>{CustomerRequest.customer_name}</td>
+                              <td>{CustomerRequest.phone}</td>
+                              <td>{CustomerRequest.medicine_details}</td>
+                              <td>
+                                {CustomerRequest.prescription == null ? (
+                                  ""
+                                ) : (
+                                  <img
+                                    src={CustomerRequest.prescription}
+                                    style={{ width: 100, height: 100 }}
+                                  />
+                                )}
+                              </td>
+                              <td>
+                                {CustomerRequest.status == 0
+                                  ? "Pendente"
+                                  : "Completo e Confirmado"}
+                              </td>
+                              <td>
+                                {new Date(
+                                  CustomerRequest.added_on
+                                ).toLocaleString()}
+                              </td>
+                              <td>
+                                {CustomerRequest.status == 0 ? (
+                                  <div>
+                                    <button
+                                      className="btn btn-block btn-warning"
+                                      onClick={() =>
+                                        this.completeCustomerRequestDetails(
+                                          CustomerRequest.id,
+                                          CustomerRequest.customer_name,
+                                          CustomerRequest.phone,
+                                          CustomerRequest.medicine_details
+                                        )
+                                      }
+                                    >
+                                      Pendente
+                                    </button>
+                                    <button
+                                      className="btn btn-block btn-danger"
+                                      onClick={() =>
+                                        this.hideCustomerRequest(
+                                          CustomerRequest.id
+                                        )
+                                      }
+                                    >
+                                      Excluir
+                                    </button>
+                                  </div>
+                                ) : (
+                                  <div>
+                                    <button
+                                      className="btn btn-block btn-success"
+                                    >
+                                      Completo e Confirmado
+                                    </button>
+                                    <button
+                                      className="btn btn-block btn-danger"
+                                      onClick={() =>
+                                        this.hideCustomerRequest(
+                                          CustomerRequest.id
+                                        )
+                                      }
+                                    >
+                                      Excluir
+                                    </button>
+                                  </div>
+                                )}
+                              </td>
+                            </tr>
+                          )
                       )}
                     </tbody>
                   </table>

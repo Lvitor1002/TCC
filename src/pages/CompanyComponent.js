@@ -61,7 +61,7 @@ class CompanyComponent extends Component {
       <section className="content">
         <div className="container-fluid">
           <div className="block-header">
-            <h2>EMPRESAS</h2>
+            <h2>Empresas</h2>
           </div>
           <div className="row clearfix">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">

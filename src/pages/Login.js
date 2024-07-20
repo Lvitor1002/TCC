@@ -99,14 +99,7 @@ class Login extends React.Component {
                                     <button className="btn btn-block bg-pink waves-effect" type="submit" disabled={this.state.bntDisable}>Entre</button>
                                 </div>
                             </div>
-                            <div className="row m-t-15 m-b--20">
-                                <div className="col-xs-6">
-                                    <a href="sign-up.html">Registre-se aqui!</a>
-                                </div>
-                                <div className="col-xs-6 align-right">
-                                    <a href="forgot-password.html">Esqueci a senha</a>
-                                </div>
-                            </div>
+
                             {this.getMessages()}
                         </form>
                     </div>
@@ -117,3 +110,14 @@ class Login extends React.Component {
 }
 
 export default Login;
+
+
+//          Registrar e esqueceu a senha
+//<div className="row m-t-15 m-b--20">
+//<div className="col-xs-6">
+//    <a href="sign-up.html">Registre-se aqui!</a>
+//</div>
+//<div className="col-xs-6 align-right">
+//    <a href="forgot-password.html"></a> 
+//</div>
+//</div>

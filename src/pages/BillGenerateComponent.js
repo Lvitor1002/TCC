@@ -220,7 +220,7 @@ class BillGenerateComponent extends React.Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div className="card">
                 <div className="header">
-                  <h2>Gerar fatura para clientes</h2>
+                  <h2>GERAR FATURA PARA OS CLIENTES</h2>
                 </div>
                 <div className="body">
                   <form onSubmit={this.formSubmit}>

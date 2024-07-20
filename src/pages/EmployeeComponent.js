@@ -54,13 +54,13 @@ const EmployeeComponent = () => {
     <section className="content">
       <div className="container-fluid">
         <div className="block-header">
-          <h2>GERENCIAR FUNCIONÁRIO</h2>
+          <h2>Gerenciar Funcionário</h2>
         </div>
         <div className="row clearfix">
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div className="card">
               <div className="header">
-                <h2>Adicionar Funcionário</h2>
+                <h2>ADICIONAR FUNCIONÁRIO</h2>
               </div>
               <div className="body">
                 <form onSubmit={formSubmit}>

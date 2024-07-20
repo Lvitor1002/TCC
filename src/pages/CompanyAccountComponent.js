@@ -61,13 +61,13 @@ class CompanyAccountComponent extends React.Component {
       <section className="content">
         <div className="container-fluid">
           <div className="block-header">
-            <h2>GERENCIAR CONTA DA EMPRESA</h2>
+            <h2>Gerenciar Conta da Empresa</h2>
           </div>
           <div className="row clearfix">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div className="card">
                 <div className="header">
-                  <h2>Adicionar Transação</h2>
+                  <h2>ADICIONAR TRANSAÇÃO</h2>
                 </div>
                 <div className="body">
                   <form onSubmit={this.formSubmit}>
@@ -209,7 +209,7 @@ class CompanyAccountComponent extends React.Component {
                   <table className="table table-hover">
                     <thead>
                       <tr>
-                        <th>#ID</th>
+                        <th>#</th>
                         <th>Nome da Empresa</th>
                         <th>ID da Empresa</th>
                         <th>Tipo de Transação</th>
