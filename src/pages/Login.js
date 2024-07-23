@@ -76,7 +76,7 @@ class Login extends React.Component {
                             <div className="msg">Entre com usuário e senha para iniciar sua sessão</div>
                             <div className="input-group">
                                 <span className="input-group-addon">
-                                    <i className="material-icons">Ususário:</i>
+                                    <i className="material-icons">Usuário:</i>
                                 </span>
                                 <div className="form-line">
                                     <input type="text" className="form-control" name="username" placeholder="Entre com o seu usuário" required autoFocus onChange={this.saveInputs} />
