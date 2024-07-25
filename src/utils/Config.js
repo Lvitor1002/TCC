@@ -1,7 +1,10 @@
 class Config {
-  static apiUrl = "https://djangobackend-wha5.vercel.app";
+  // URL base da API, que pode ser configurada para diferentes ambientes
+  static apiUrl = process.env.REACT_APP_API_URL || "https://djangobackend-wha5.vercel.app";
+
+  // URLs de API construídas a partir da URL base
   static loginUrl = this.apiUrl + "/api/gettoken/";
-  static refreshApiUrl = this.apiUrl + "/api/resfresh_token/";
+  static refreshApiUrl = this.apiUrl + "/api/refresh_token/";
   static companyApiUrl = this.apiUrl + "/api/company/";
   static homeApiUrl = this.apiUrl + "/api/home_api/";
   static customerRequestApiUrl = this.apiUrl + "/api/customer_request/";
@@ -13,14 +16,11 @@ class Config {
   static employeeApiURL = this.apiUrl + "/api/employee/";
   static medicineApiUrl = this.apiUrl + "/api/medicine/";
   static employeeBankApiUrl = this.apiUrl + "/api/employee_all_bank/";
-  static employeeBankApiUrlBYID =
-    this.apiUrl + "/api/employee_bankby_id/";
-  static employeeSalaryApiUrl =
-    this.apiUrl + "/api/employee_all_salary/";
-  static employeeSalaryByIdApiUrl =
-    this.apiUrl + "/api/employee_salaryby_id/";
-  static logoutPageUrl = "/logout";
-  static homeUrl = "/home";
+  static employeeBankApiUrlById = this.apiUrl + "/api/employee_bankby_id/";
+  static employeeSalaryApiUrl = this.apiUrl + "/api/employee_all_salary/";
+  static employeeSalaryByIdApiUrl = this.apiUrl + "/api/employee_salaryby_id/";
+  
+
 
   static sidebarItem = [
     { index: "0", title: "Inicio", url: "/home", icons: "home" },
@@ -35,3 +35,4 @@ class Config {
 }
 
 export default Config;
+
