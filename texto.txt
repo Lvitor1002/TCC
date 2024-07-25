@@ -6,3 +6,8 @@ git push origin main: Envia as mudanças para o repositório remoto no GitHub.
 
 set NODE_OPTIONS=--openssl-legacy-provider
 npm start
+
+
+Comando para rodar:
+export NODE_OPTIONS=--openssl-legacy-provider
+npm start
